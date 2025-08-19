@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+@import "tailwindcss";
+
+[data-theme="light"] {
+  --color-accent: theme(--color-violet-400);
+  --color-accent-hover: theme(--color-violet-500);
+  --card-accent: theme(--color-violet-200);
+  --bg-color: theme(--color-violet-400);
+  --text-color: theme(--color-neutral-900);
+  --text-color-hover: theme(--color-violet-900);
+  --text-secondary: theme(--color-neutral-700);
+  --text-secondary-hover: theme(--color-violet-800);
+  --accent-text: theme(--color-neutral-950);
+  --secondary-color: theme(--color-violet-300);
+  --secondary-hover: theme(--color-violet-400);
+  --tertiary-color: theme(--color-violet-100);
+}
+
+[data-theme="dark"] {
+  --color-accent: theme(--color-violet-500);
+  --color-accent-hover: theme(--color-violet-600);
+  --card-accent: theme(--color-neutral-800);
+  --bg-color: theme(--color-neutral-950);
+  --text-color: theme(--color-neutral-200);
+  --text-color-hover: theme(--color-violet-950);
+  --text-secondary: theme(--color-neutral-400);
+  --text-secondary-hover: theme(--color-violet-500);
+  --accent-text: theme(--color-violet-200);
+  --secondary-color: theme(--color-neutral-700);
+  --secondary-hover: theme(--color-neutral-800);
+  --tertiary-color: theme(--color-neutral-900);
+}
+
+:root {
+  --accent: var(--color-accent);
+}
+
+@theme {
+  --color-card: var(--card-accent);
+  --color-secondary: var(--secondary-color);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-tertiary: var(--tertiary-color);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-text: var(--text-color);
+  --color-accent-text: var(--accent-text);
+  --color-text-hover: var(--text-color-hover);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-secondary-hover: var(--text-secondary-hover);
+
+  --font-jetbrains: "JetBrains Mono", monospace;
+
+  --font-poppins: "Poppins", sans-serif;
+}
+
+* {
+  user-select: none;
+}
