@@ -25,13 +25,13 @@ function App() {
           />
         </div>
       </SettingsCard.Root>
-      <div className="w-screen min-h-screen grid grid-cols-3 auto-rows-[28rem] gap-4 [grid-auto-flow:dense] px-72 py-4 bg-[var(--bg-color)] ease-linear transition-colors">
+      <div className="grid grid-cols-3 auto-rows-[28rem] gap-4 [grid-auto-flow:dense] px-72 py-4 bg-[var(--bg-color)] ease-linear transition-colors">
         <Card.Root title="calendar" align="start">
           <div className="w-full h-full flex flex-col gap-8 items-center">
             <Calendar.Month />
           </div>
         </Card.Root>
-        <Card.Root title="clock" align="start">
+        <Card.Root title="clock" align="start" cardClass="items-center">
           <div className="w-full h-fit flex flex-col gap-4">
             <Clock.Timer variant="24h" />
             <Clock.Timezone />

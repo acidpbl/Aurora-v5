@@ -3,6 +3,8 @@ import { useState } from "react";
 import { CalendarMonthHeader } from "./CalendarMonthHeader";
 import { CalendarMonthWeekdays } from "./CalendarMonthWeekdays";
 import { CalendarMonthGrid } from "./CalendarMonthGrid";
+import { PiCaretDown } from "react-icons/pi";
+import { twMerge } from "tailwind-merge";
 
 function getMonthMatrix(year: number, month: number, language: string) {
   const firstDay = new Date(year, month, 1);
@@ -111,7 +113,7 @@ export function CalendarMonth() {
         onNext={nextMonth}
         reset={resetMonth}
       />
-      <div className="w-full flex flex-col gap-1 items-center justify-center shadow">
+      <div className="w-full flex flex-col gap-1 items-center justify-center">
         <CalendarMonthWeekdays
           weekDaysShort={weekDaysShort}
           displayMonth={displayMonth}
@@ -120,6 +122,15 @@ export function CalendarMonth() {
         <div className="grid grid-cols-7 w-full rounded overflow-hidden bg-secondary shadow">
           <CalendarMonthGrid matrix={matrix} isToday={isToday} />
         </div>
+        <button
+          onClick={() => {}}
+          className={twMerge(
+            "flex items-center gap-2 mt-3 cursor-pointer",
+            "text-accent-text hover:text-accent-hover transition-colors ease-linear"
+          )}
+        >
+          show more <PiCaretDown />
+        </button>
       </div>
     </>
   );

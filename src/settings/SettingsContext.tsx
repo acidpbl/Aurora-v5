@@ -17,6 +17,8 @@ interface SettingsContextProps {
   setDateFormat: (format: string) => void;
   timeFormat: string;
   setTimeFormat: (format: string) => void;
+  geolocation: string;
+  setGeolocation: (loc: string) => void;
 }
 
 const SettingsContext = createContext<SettingsContextProps | undefined>(
@@ -59,6 +61,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
     setDateFormat: () => {},
     timeFormat: "ampm",
     setTimeFormat: () => {},
+    geolocation: "",
+    setGeolocation: () => {},
   };
 
   return (
