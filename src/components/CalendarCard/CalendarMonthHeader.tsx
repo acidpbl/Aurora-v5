@@ -10,6 +10,7 @@ import { twMerge } from "tailwind-merge";
 
 interface CalendarMonthHeaderProps {
   monthName: string;
+  monthIndex: number;
   year: number;
   onPrev: () => void;
   onNext: () => void;
@@ -18,6 +19,7 @@ interface CalendarMonthHeaderProps {
 
 export function CalendarMonthHeader({
   monthName,
+  monthIndex,
   year,
   onPrev,
   onNext,
@@ -26,7 +28,7 @@ export function CalendarMonthHeader({
   const { now } = useDate();
 
   const isCurrentMonth =
-    now.getMonth() === new Date(`${monthName} 1, ${year}`).getMonth() &&
+    now.getMonth() === new Date(`${monthIndex + 1} 1, ${year}`).getMonth() &&
     now.getFullYear() === year;
 
   return (

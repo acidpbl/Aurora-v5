@@ -1,4 +1,4 @@
-import { useSettings } from "../../settings/SettingsContext";
+import { useSettings } from "../../context/SettingsContext";
 import { useState } from "react";
 import { CalendarMonthHeader } from "./CalendarMonthHeader";
 import { CalendarMonthWeekdays } from "./CalendarMonthWeekdays";
@@ -108,6 +108,7 @@ export function CalendarMonth() {
     <>
       <CalendarMonthHeader
         monthName={monthName}
+        monthIndex={displayMonth}
         year={year}
         onPrev={prevMonth}
         onNext={nextMonth}

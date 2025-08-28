@@ -1,10 +1,12 @@
+import { useSettings } from "../../context/SettingsContext";
 import { useDate } from "../../hooks/useDate";
 
 export function ClockDate() {
   const { now } = useDate();
+  const { language } = useSettings();
 
-  const weekday = now.toLocaleDateString("en-us", { weekday: "long" });
-  const month = now.toLocaleDateString("en-us", { month: "long" });
+  const weekday = now.toLocaleDateString(language, { weekday: "long" });
+  const month = now.toLocaleDateString(language, { month: "long" });
   const day = now.getDate();
   const year = now.getFullYear();
 

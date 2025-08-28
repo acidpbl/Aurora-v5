@@ -16,6 +16,8 @@
   --secondary-color: theme(--color-violet-300);
   --secondary-hover: theme(--color-violet-400);
   --tertiary-color: theme(--color-violet-100);
+
+  --text-disabled: theme(--color-violet-400);
 }
 
 [data-theme="dark"] {
@@ -31,6 +33,8 @@
   --secondary-color: theme(--color-neutral-700);
   --secondary-hover: theme(--color-neutral-800);
   --tertiary-color: theme(--color-neutral-900);
+
+  --text-disabled: theme(--color-neutral-400);
 }
 
 :root {
@@ -49,6 +53,7 @@
   --color-text-hover: var(--text-color-hover);
   --color-text-secondary: var(--text-secondary);
   --color-text-secondary-hover: var(--text-secondary-hover);
+  --color-text-disabled: var(--text-disabled);
 
   --font-jetbrains: "JetBrains Mono", monospace;
 
