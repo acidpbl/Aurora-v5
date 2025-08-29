@@ -38,7 +38,7 @@ export function CalendarMonthHeader({
         aria-label="Previous month"
         icon={PiCaretLeftBold}
       />
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center capitalize">
         <span
           className={twMerge(
             "font-jetbrains text-lg",

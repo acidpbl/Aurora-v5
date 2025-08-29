@@ -114,7 +114,7 @@ export function CalendarMonth() {
         onNext={nextMonth}
         reset={resetMonth}
       />
-      <div className="w-full flex flex-col gap-1 items-center justify-center">
+      <div className="w-full flex flex-col gap-1 items-center justify-center font-poppins">
         <CalendarMonthWeekdays
           weekDaysShort={weekDaysShort}
           displayMonth={displayMonth}

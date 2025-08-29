@@ -1,5 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import { setCookie, getCookie } from "../utils/cookieUtils";
 
 type Theme = "light" | "dark";
@@ -23,8 +29,12 @@ interface SettingsContextProps {
   timeFormat: TimeFormat;
   setTimeFormat: (format: TimeFormat) => void;
 
-  geolocation: string;
-  setGeolocation: (loc: string) => void;
+  latitude: string;
+  setLatitude: (lat: string) => void;
+  longitude: string;
+  setLongitude: (lat: string) => void;
+  initialLatitude: string;
+  initialLongitude: string;
 }
 
 const SettingsContext = createContext<SettingsContextProps | undefined>(
@@ -55,9 +65,50 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
     () => (getCookie("timeFormat") as TimeFormat) || "ampm"
   );
 
-  const [geolocation, setGeolocationState] = useState<string>(
-    () => getCookie("geolocation") || ""
+  const [latitude, setLatitude] = useState<string>(
+    () => getCookie("latitude") || ""
   );
+  const [longitude, setLongitude] = useState<string>(
+    () => getCookie("longitude") || ""
+  );
+  const initialLatitude = useRef<string>(getCookie("latitude") || "");
+  const initialLongitude = useRef<string>(getCookie("longitude") || "");
+
+  useEffect(() => {
+    if (!latitude || !longitude) {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const lat = pos.coords.latitude.toString();
+            const lon = pos.coords.longitude.toString();
+
+            setLatitude(lat);
+            setLongitude(lon);
+
+            if (!initialLatitude.current) initialLatitude.current = lat;
+            if (!initialLongitude.current) initialLongitude.current = lon;
+          },
+          (err) => {
+            console.warn("Geolocation denied:", err.message);
+            setLatitude("Permission denied");
+            setLongitude("Permission denied");
+
+            if (!initialLatitude.current)
+              initialLatitude.current = "Permission denied";
+            if (!initialLongitude.current)
+              initialLongitude.current = "Permission denied";
+          }
+        );
+      } else {
+        setLatitude("Not supported");
+        setLongitude("Not supported");
+
+        if (!initialLatitude.current) initialLatitude.current = "Not supported";
+        if (!initialLongitude.current)
+          initialLongitude.current = "Not supported";
+      }
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -68,7 +119,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => setCookie("timezone", timezone), [timezone]);
   useEffect(() => setCookie("dateFormat", dateFormat), [dateFormat]);
   useEffect(() => setCookie("timeFormat", timeFormat), [timeFormat]);
-  useEffect(() => setCookie("geolocation", geolocation), [geolocation]);
+  useEffect(() => setCookie("latitude", latitude), [latitude]);
+  useEffect(() => setCookie("longitude", longitude), [longitude]);
 
   const setTheme = (theme: Theme) => setThemeState(theme);
   const toggleTheme = () =>
@@ -86,8 +138,12 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
     setDateFormat: setDateFormatState,
     timeFormat,
     setTimeFormat: setTimeFormatState,
-    geolocation,
-    setGeolocation: setGeolocationState,
+    latitude,
+    setLatitude,
+    longitude,
+    setLongitude,
+    initialLatitude: initialLatitude.current,
+    initialLongitude: initialLongitude.current,
   };
 
   return (

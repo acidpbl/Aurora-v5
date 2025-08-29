@@ -11,7 +11,7 @@ export function ClockDate() {
   const year = now.getFullYear();
 
   return (
-    <div className="w-full h-fit flex flex-col items-center gap-4">
+    <div className="w-full h-fit flex flex-col items-center gap-4 capitalize">
       <span className="font-jetbrains text-text text-xl">{weekday}</span>
       <span className="font-jetbrains text-text text-2xl font-semibold">
         {month} {day}, {year}

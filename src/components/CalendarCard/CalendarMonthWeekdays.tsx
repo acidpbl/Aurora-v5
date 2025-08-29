@@ -17,7 +17,7 @@ export function CalendarMonthWeekdays({
     displayMonth === now.getMonth() && displayYear === now.getFullYear();
 
   return (
-    <div className="w-full grid grid-cols-7 gap-1 bg-tertiary rounded shadow">
+    <div className="w-full grid grid-cols-7 gap-1 bg-tertiary rounded shadow capitalize">
       {weekDaysShort.map((wd, i) => (
         <span
           key={i}
