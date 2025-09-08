@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-export const useDate = () => {
+export function useDate() {
   const [now, setNow] = useState(new Date());
+  const weekday = now.toLocaleDateString("en-us", { weekday: "long" });
+  const month = now.toLocaleDateString("en-us", { month: "long" });
+  const day = now.getDate();
+  const year = now.getFullYear();
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const date = new Date();
-      setNow(date);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+    setNow(new Date());
+  }, [now]);
 
-  return { now };
-};
+  return { states: { now, weekday, month, day, year }, functions: { setNow } };
+}

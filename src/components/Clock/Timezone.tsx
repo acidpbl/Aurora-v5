@@ -1,7 +1,10 @@
-export function ClockTimezone() {
+import { useDate } from "../../hooks/useDate";
+
+export function CardTimezone() {
+  const { now } = useDate().states;
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  const offsetMinutes = new Date().getTimezoneOffset();
+  const offsetMinutes = now.getTimezoneOffset();
   const offsetHours = Math.floor(Math.abs(offsetMinutes) / 60);
   const offsetMins = Math.abs(offsetMinutes) % 60;
   const sign = offsetMinutes <= 0 ? "+" : "-";
@@ -12,8 +15,10 @@ export function ClockTimezone() {
     (offsetMins ? `:${offsetMins.toString().padStart(2, "0")}` : "");
 
   return (
-    <p className="self-center text-text font-jetbrains text-md opacity-75 hover:text-accent transition-colors ease-linear">
-      {tz} ({formattedOffset})
-    </p>
+    <div className="w-full flex justify-center">
+      <span className="text-text-primary hover:text-secondary ease-linear transition-colors text-lg font-jetbrains font-semibold">
+        {tz} ({formattedOffset})
+      </span>
+    </div>
   );
 }

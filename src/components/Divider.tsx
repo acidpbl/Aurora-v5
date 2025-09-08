@@ -1,15 +1,15 @@
 import { twMerge } from "tailwind-merge";
 
 interface DividerProps {
-  flow?: "horizontal" | "vertical";
+  float?: "horizontal" | "vertical";
 }
 
-export function Divider({ flow = "horizontal" }: DividerProps) {
+export function Divider({ float = "horizontal" }: DividerProps) {
   return (
     <div
       className={twMerge(
-        flow === "horizontal" ? "w-full h-px" : "w-px h-full",
-        "bg-accent"
+        float == "horizontal" ? "w-full h-px" : "w-px h-full",
+        "bg-radial from-tertiary to-transparent"
       )}
     />
   );
