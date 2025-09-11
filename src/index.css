@@ -14,18 +14,17 @@
 /* ================================================
   Themes
 ================================================ */
-
 [data-theme="light"] {
-  --color-primary: theme(--color-violet-400);
-  --color-primary-hover: theme(--color-violet-600);
-  --color-secondary: theme(--color-neutral-800);
-  --color-secondary-hover: theme(--color-violet-950);
-  --color-tertiary: theme(--color-violet-500);
-  --color-tertiary-hover: theme(--color-violet-600);
-  --color-background: theme(--color-violet-400);
+  --color-primary: theme(--color-violet-600);
+  --color-primary-hover: theme(--color-violet-700);
+  --color-secondary: theme(--color-neutral-700);
+  --color-secondary-hover: theme(--color-neutral-900);
+  --color-tertiary: theme(--color-violet-400);
+  --color-tertiary-hover: theme(--color-violet-500);
+  --color-background: theme(--color-neutral-50);
   --color-card: theme(--color-violet-200);
-  --color-text-primary: theme(--color-neutral-700);
-  --color-text-secondary: theme(--color-violet-800);
+  --color-text-primary: theme(--color-neutral-900);
+  --color-text-secondary: theme(--color-neutral-600);
 }
 
 [data-theme="dark"] {
