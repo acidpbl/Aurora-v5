@@ -28,6 +28,7 @@ interface SettingsContextProps {
 
   timeFormat: TimeFormat;
   setTimeFormat: (format: TimeFormat) => void;
+  toggleTimeFormat: () => void;
 
   latitude: string;
   setLatitude: (lat: string) => void;
@@ -125,6 +126,8 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
   const setTheme = (theme: Theme) => setThemeState(theme);
   const toggleTheme = () =>
     setThemeState((prev) => (prev === "light" ? "dark" : "light"));
+  const toggleTimeFormat = () =>
+    setTimeFormatState((prev) => (prev === "24h" ? "ampm" : "24h"));
 
   const value: SettingsContextProps = {
     theme,
@@ -138,6 +141,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({
     setDateFormat: setDateFormatState,
     timeFormat,
     setTimeFormat: setTimeFormatState,
+    toggleTimeFormat,
     latitude,
     setLatitude,
     longitude,

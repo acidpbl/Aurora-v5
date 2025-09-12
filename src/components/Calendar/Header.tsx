@@ -42,10 +42,10 @@ export function CalendarHeader() {
             states.year === now.getFullYear() && (
               <PiCircleFill
                 className="self-center text-text-primary"
-                size={12}
+                size={8}
               />
             )}
-          {language === "en_us"
+          {language === "en-us"
             ? `${states.monthStr}, ${states.year}`
             : `${states.monthStr} de ${states.year}`}
         </span>

@@ -15,13 +15,13 @@ export function CalendarGrid() {
 
   return (
     <div className="flex flex-col gap-4 px-6 py-2">
-      <div className="p-2 rounded-lg bg-background flex flex-col gap-1 border-2 border-tertiary">
+      <div className="p-2 rounded-lg bg-background flex flex-col gap-1 border-2 border-tertiary ease-linear transition-colors">
         <div className="grid grid-cols-7 gap-2 px-4">
           {weekdaysShort.map((wd, i) => (
             <span
               key={i}
               className={twMerge(
-                "flex items-center justify-center aspect-square font-jetbrains text-sm font-semibold uppercase tracking-wide rounded-lg transition-colors",
+                "flex items-center justify-center aspect-square font-jetbrains text-sm font-semibold uppercase tracking-wide rounded-lg transition-colors ease-linear",
                 isCurrentMonth && i === now.getDay()
                   ? "text-primary bg-primary/10"
                   : "text-text-secondary"
@@ -40,7 +40,6 @@ export function CalendarGrid() {
               date.getMonth() === now.getMonth() &&
               date.getFullYear() === now.getFullYear();
 
-            // Retorna array de feriados ou null
             const holidayInfo = holiday.isHoliday(date);
             const isHoliday = !!holidayInfo;
             const holidayNames = Array.isArray(holidayInfo)
@@ -50,9 +49,9 @@ export function CalendarGrid() {
             return (
               <span
                 key={i}
-                title={isHoliday ? holidayNames : undefined} // tooltip com nome do feriado
+                title={isHoliday ? holidayNames : undefined}
                 className={twMerge(
-                  "flex items-center justify-center aspect-square font-jetbrains font-bold rounded-xl border transition-all duration-200 select-none relative",
+                  "flex items-center justify-center aspect-square font-jetbrains font-bold rounded-xl border transition-all duration-200 select-none relative ease-linear",
                   type === "current"
                     ? "text-text-primary border-transparent hover:bg-tertiary hover:text-primary"
                     : "text-text-primary/40 border-transparent hover:text-text-secondary hover:bg-background/50",

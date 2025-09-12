@@ -1,23 +1,22 @@
 import type { ButtonHTMLAttributes } from "react";
-import type { IconType } from "react-icons";
 
-interface HeaderButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface HeaderToggleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   toggled: boolean;
-  icon: { toggle: IconType; toggled: IconType };
+  options: { toggle: string; toggled: string };
 }
 
 export function HeaderToggle({
-  icon: Icon,
+  options,
   toggled,
   ...props
-}: HeaderButtonProps) {
+}: HeaderToggleProps) {
   return (
     <button
       className="p-2 cursor-pointer rounded-lg border-2 border-tertiary hover:bg-background ease-linear transition-colors flex items-center"
       {...props}
     >
-      <span className="text-secondary">
-        {toggled ? <Icon.toggled /> : <Icon.toggle />}
+      <span className="text-secondary text-xs">
+        {toggled ? options.toggled : options.toggle}
       </span>
     </button>
   );
