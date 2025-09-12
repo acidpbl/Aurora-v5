@@ -12,6 +12,7 @@ import { Footer } from "./components/Footer";
 import { BR, US } from "country-flag-icons/react/1x1";
 import { Weather } from "./components/Weather";
 import { useWeather } from "./hooks/useWeather";
+import { useState } from "react";
 
 export function App() {
   const { weekday, monthStr, day, year, isHoliday } = useDate().states;
@@ -23,7 +24,16 @@ export function App() {
     timeFormat,
     toggleTimeFormat,
   } = useSettings();
-  const { weather } = useWeather();
+
+  const [weatherLocation, setWeatherLocation] = useState<string>("");
+  const [weatherQuery, setWeatherQuery] = useState<string>("");
+
+  const { weather } = useWeather(weatherQuery);
+
+  function handleWeatherInputSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setWeatherQuery(weatherLocation);
+  }
   return (
     <div className="w-screen h-full bg-background md:px-24 lg:px-72 py-4 flex flex-col gap-4 ease-linear transition-colors">
       <Header.Root>
@@ -87,7 +97,16 @@ export function App() {
               : `clima ${weather?.location && `em ${weather.location}`}`
           }
         >
-          <Weather.Data />
+          <div className="size-full flex flex-col gap-2">
+            <form onSubmit={handleWeatherInputSubmit} className="w-full flex">
+              <Weather.Input
+                placeholder={weather?.location || "Enter city"}
+                value={weatherLocation}
+                onChange={(e) => setWeatherLocation(e.target.value)}
+              />
+            </form>
+            <Weather.Data city={weatherQuery} />
+          </div>
         </Card.Root>
         <Card.Root></Card.Root>
         <Card.Root></Card.Root>
