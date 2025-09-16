@@ -5,7 +5,7 @@ import {
   PiBroomFill,
   PiArrowClockwiseFill,
   PiArrowCounterClockwiseFill,
-  PiCopyFill,
+  PiFloppyDiskFill,
 } from "react-icons/pi";
 import { useSettings } from "../../context/SettingsProvider";
 
@@ -30,7 +30,7 @@ export function StopwatchOptions() {
         label={language === "en-us" ? "reset" : "reiniciar"}
       />
       <Card.Button
-        icon={PiCopyFill}
+        icon={PiFloppyDiskFill}
         onClick={saveTime}
         label={language === "en-us" ? "save" : "salvar"}
       />

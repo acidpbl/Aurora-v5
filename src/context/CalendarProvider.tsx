@@ -10,7 +10,7 @@ interface CalendarCell {
 
 interface CalendarContextType {
   states: {
-    weekdaysShort: string[];
+    weekDays: string[];
     matrix: CalendarCell[][];
     month: number;
     monthStr: string;
@@ -51,9 +51,8 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
     const weekDays = [];
     for (let i = 0; i < 7; i++) {
       const d = new Date(2023, 0, i + 1);
-      weekDays.push(d.toLocaleDateString(language, { weekday: "short" }));
+      weekDays.push(d.toLocaleDateString(language, { weekday: "long" }));
     }
-    const weekdaysShort = weekDays.map((wd) => wd[0]);
 
     const matrix: CalendarCell[][] = [];
     let dayCounter = 1 - firstWeekday;
@@ -92,7 +91,7 @@ export function CalendarProvider({ children }: { children: React.ReactNode }) {
     }
 
     return {
-      states: { weekdaysShort, matrix, month, monthStr, year },
+      states: { weekDays, matrix, month, monthStr, year },
       functions: { setMonth, setYear },
     };
   }, [month, year, language]);

@@ -1,7 +1,11 @@
 import { BsPlayFill, BsStopFill } from "react-icons/bs";
 import { Card } from "../Card";
 import { useTimer } from "../../context/TimerProvider";
-import { PiBroomFill, PiArrowClockwiseFill, PiCopyFill } from "react-icons/pi";
+import {
+  PiBroomFill,
+  PiArrowClockwiseFill,
+  PiFloppyDiskFill,
+} from "react-icons/pi";
 import { useSettings } from "../../context/SettingsProvider";
 
 export function TimerOptions() {
@@ -24,7 +28,7 @@ export function TimerOptions() {
         label={language === "en-us" ? "reset" : "reiniciar"}
       />
       <Card.Button
-        icon={PiCopyFill}
+        icon={PiFloppyDiskFill}
         onClick={saveTime}
         label={language === "en-us" ? "save" : "salvar"}
       />

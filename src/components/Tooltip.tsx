@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 interface TooltipProps {
   children: ReactNode;
-  content: string;
+  content: ReactNode;
   position?: "top" | "bottom" | "left" | "right";
 }
 
@@ -47,7 +47,7 @@ export function Tooltip({ children, content, position = "top" }: TooltipProps) {
   return (
     <div
       className="relative"
-      onMouseEnter={content.length > 0 ? showTooltip : () => {}}
+      onMouseEnter={showTooltip}
       onMouseLeave={() => setVisible(false)}
     >
       {children}
@@ -55,7 +55,7 @@ export function Tooltip({ children, content, position = "top" }: TooltipProps) {
       {visible &&
         createPortal(
           <div
-            className="absolute z-[9999] bg-background border-2 border-tertiary rounded-lg px-2 py-1 text-primary transition-all ease-linear"
+            className="absolute z-[9999] bg-background border-2 border-tertiary rounded-lg px-2 py-1 text-text-primary transition-all ease-linear whitespace-pre-line text-center"
             style={{
               top: coords.top,
               left: coords.left,
