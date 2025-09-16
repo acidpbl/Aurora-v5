@@ -66,8 +66,13 @@ export function useWeather(cityInput?: string) {
         setLoading(false);
       }
     };
-
     fetchWeather();
+
+    let interval = setInterval(async () => {
+      fetchWeather();
+    }, 1000 * 60 * 10);
+
+    return () => clearInterval(interval);
   }, [latitude, longitude, cityInput, language]);
 
   return { weather, loading, error };

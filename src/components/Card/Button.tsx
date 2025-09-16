@@ -3,15 +3,23 @@ import type { IconType } from "react-icons";
 
 interface CardButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: IconType;
+  label?: string;
 }
 
-export function CardButton({ icon: Icon, ...props }: CardButtonProps) {
+export function CardButton({ icon: Icon, label, ...props }: CardButtonProps) {
   return (
-    <button
-      className="text-primary rounded-lg p-2 cursor-pointer hover:text-card hover:bg-tertiary ease-linear transition-colors"
-      {...props}
-    >
-      <Icon />
-    </button>
+    <div className="flex flex-col items-center">
+      <button
+        {...props}
+        className="p-2 cursor-pointer rounded-lg border-2 border-tertiary text-text-primary bg-background aspect-square size-fit hover:bg-primary hover:text-background hover:border-secondary ease-linear transition-colors peer"
+      >
+        {<Icon size={32} />}
+      </button>
+      {label && (
+        <span className="text-text-primary text-xs peer-hover:text-secondary ease-linear transition-colors">
+          {label}
+        </span>
+      )}
+    </div>
   );
 }

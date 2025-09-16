@@ -13,6 +13,10 @@ import { BR, US } from "country-flag-icons/react/1x1";
 import { Weather } from "./components/Weather";
 import { useWeather } from "./hooks/useWeather";
 import { useState } from "react";
+import { Stopwatch } from "./components/Stopwatch";
+import { StopwatchProvider } from "./context/StopwatchProvider";
+import { TimerProvider } from "./context/TimerProvider";
+import { Timer } from "./components/Timer";
 
 export function App() {
   const { weekday, monthStr, day, year, isHoliday } = useDate().states;
@@ -92,9 +96,31 @@ export function App() {
         </Card.Root>
         <Card.Root
           title={
-            language === "en-us"
-              ? `weather ${weather?.location && `in ${weather.location}`}`
-              : `clima ${weather?.location && `em ${weather.location}`}`
+            language === "en-us" ? (
+              <span className="flex gap-2">
+                weather
+                {weather?.location && (
+                  <>
+                    <span>in</span>
+                    <span className="text-primary font-semibold">
+                      {weather.location}
+                    </span>
+                  </>
+                )}
+              </span>
+            ) : (
+              <span className="flex gap-2">
+                clima
+                {weather?.location && (
+                  <>
+                    <span>em</span>
+                    <span className="text-primary font-semibold">
+                      {weather.location}
+                    </span>
+                  </>
+                )}
+              </span>
+            )
           }
         >
           <div className="size-full flex flex-col gap-2">
@@ -108,8 +134,24 @@ export function App() {
             <Weather.Data city={weatherQuery} />
           </div>
         </Card.Root>
-        <Card.Root></Card.Root>
-        <Card.Root></Card.Root>
+        <Card.Root title={language === "en-us" ? "stopwatch" : "cronômetro"}>
+          <StopwatchProvider stopwatchId="stopwatch_default">
+            <div className="px-3 flex flex-col gap-2 h-full">
+              <Stopwatch.Clock />
+              <Stopwatch.Options />
+              <Stopwatch.Saved />
+            </div>
+          </StopwatchProvider>
+        </Card.Root>
+        <Card.Root title={language === "en-us" ? "timer" : "temporizador"}>
+          <TimerProvider timerId="timer_default">
+            <div className="px-3 flex flex-col gap-2 h-full">
+              <Timer.Clock />
+              <Timer.Options />
+              <Timer.Saved />
+            </div>
+          </TimerProvider>
+        </Card.Root>
         <Card.Root></Card.Root>
       </div>
       <Footer.Root></Footer.Root>

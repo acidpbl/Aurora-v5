@@ -65,4 +65,9 @@
 
 * {
   user-select: none;
+  scrollbar-color: var(--color-primary) var(--color-background);
+}
+
+*::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }

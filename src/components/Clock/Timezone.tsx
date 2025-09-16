@@ -15,7 +15,7 @@ export function CardTimezone() {
     (offsetMins ? `:${offsetMins.toString().padStart(2, "0")}` : "");
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center lowercase">
       <span className="text-text-primary hover:text-secondary ease-linear transition-colors text-lg font-jetbrains font-semibold">
         {tz} ({formattedOffset})
       </span>

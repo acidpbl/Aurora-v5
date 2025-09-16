@@ -27,7 +27,7 @@ export function WeatherData({ city }: WeatherDataProps) {
   };
 
   return (
-    <div className="size-full flex flex-col bg-background rounded-lg border-2 border-tertiary items-center p-2 px-8 gap-4 font-poppins ease-linear transition-colors justify-center">
+    <div className="size-full flex flex-col bg-background rounded-lg border-2 border-tertiary items-center p-2 px-8 gap-4 font-poppins ease-linear transition-colors justify-center lowercase">
       <div className="size-fit flex flex-col items-center gap-4">
         <div className="w-full flex items-center justify-center gap-4">
           <span className="p-1 rounded-lg border-2 border-tertiary bg-card hover:bg-primary-hover hover:border-secondary ease-linear transition-colors">
@@ -42,9 +42,7 @@ export function WeatherData({ city }: WeatherDataProps) {
             </p>
           </div>
         </div>
-        <p className="capitalize text-text-primary text-xl">
-          {weather.condition}
-        </p>
+        <p className="text-text-primary text-xl">{weather.condition}</p>
       </div>
       <Divider float="horizontal" />
       <div className="size-fit flex flex-col gap-2 items-center text-text-primary font-light text-lg">
